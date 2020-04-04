@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/jobox-coding-challenge/static/css/main.8434e3e0.chunk.css",
-    "main.js": "/jobox-coding-challenge/static/js/main.68f53cb6.chunk.js",
-    "main.js.map": "/jobox-coding-challenge/static/js/main.68f53cb6.chunk.js.map",
+    "main.js": "/jobox-coding-challenge/static/js/main.120271be.chunk.js",
+    "main.js.map": "/jobox-coding-challenge/static/js/main.120271be.chunk.js.map",
     "runtime-main.js": "/jobox-coding-challenge/static/js/runtime-main.7afc2dcd.js",
     "runtime-main.js.map": "/jobox-coding-challenge/static/js/runtime-main.7afc2dcd.js.map",
     "static/css/2.274a6d8f.chunk.css": "/jobox-coding-challenge/static/css/2.274a6d8f.chunk.css",
-    "static/js/2.cde938de.chunk.js": "/jobox-coding-challenge/static/js/2.cde938de.chunk.js",
-    "static/js/2.cde938de.chunk.js.map": "/jobox-coding-challenge/static/js/2.cde938de.chunk.js.map",
+    "static/js/2.40d40a85.chunk.js": "/jobox-coding-challenge/static/js/2.40d40a85.chunk.js",
+    "static/js/2.40d40a85.chunk.js.map": "/jobox-coding-challenge/static/js/2.40d40a85.chunk.js.map",
     "index.html": "/jobox-coding-challenge/index.html",
-    "precache-manifest.8cb79adda57e5304c0627094bde741ba.js": "/jobox-coding-challenge/precache-manifest.8cb79adda57e5304c0627094bde741ba.js",
+    "precache-manifest.f1651d4b5f3cf1cbe4fadf68548df92d.js": "/jobox-coding-challenge/precache-manifest.f1651d4b5f3cf1cbe4fadf68548df92d.js",
     "service-worker.js": "/jobox-coding-challenge/service-worker.js",
     "static/css/2.274a6d8f.chunk.css.map": "/jobox-coding-challenge/static/css/2.274a6d8f.chunk.css.map",
     "static/css/main.8434e3e0.chunk.css.map": "/jobox-coding-challenge/static/css/main.8434e3e0.chunk.css.map"
@@ -17,8 +17,8 @@
   "entrypoints": [
     "static/js/runtime-main.7afc2dcd.js",
     "static/css/2.274a6d8f.chunk.css",
-    "static/js/2.cde938de.chunk.js",
+    "static/js/2.40d40a85.chunk.js",
     "static/css/main.8434e3e0.chunk.css",
-    "static/js/main.68f53cb6.chunk.js"
+    "static/js/main.120271be.chunk.js"
   ]
 }
