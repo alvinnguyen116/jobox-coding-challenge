@@ -28,7 +28,7 @@ function capitalize(str) {
  * @desc Prettify a breed for display.
  */
 export function prettifyBreed({breed, subBreed = null}) {
-    return `${capitalize(breed)} ${subBreed ? capitalize(subBreed) : ""}`.trim();
+    return `${subBreed ? capitalize(subBreed) : ""} ${capitalize(breed)}`.trim();
 }
 
 /**

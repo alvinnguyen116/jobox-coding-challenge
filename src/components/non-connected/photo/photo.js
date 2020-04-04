@@ -57,8 +57,8 @@ function Photo({url, isLoaded, isFavorite, singleView, dispatch}) {
      */
     if (isLoaded) {
         return  (
-            <div className={`photo`} key={url}>
-                <div className={`card-container`} style={{backgroundImage: `url(${url})`}} onClick={handleOnClick}/>
+            <div className={`photo`} key={url} onClick={handleOnClick}>
+                <div className={`card-container`} style={{backgroundImage: `url(${url})`}}/>
                 {renderFavoriteButton()}
             </div>
         );

@@ -50,15 +50,10 @@ function Menu ({dispatch, darkTheme, singleView, showingFavoriteDogs}) {
     // HANDLERS --------------------------------------------------------------------------------------------------------
 
     /**
-     * @desc A click handler for clicking on the
-     * favorite button.
+     * @desc A change handler for the
+     * favorite slider.
      */
-    const handleOnClick = () => {
-        window.scroll({
-            top: 0,
-            left: 0,
-            behavior: 'smooth'
-        });
+    const handleOnChange = () => {
         dispatch(setFirstSearch(false));
         dispatch(setShowFavoriteDogs(!showingFavoriteDogs));
         setMenuOpen(false);
@@ -105,9 +100,9 @@ function Menu ({dispatch, darkTheme, singleView, showingFavoriteDogs}) {
             <CSSTransition in={menuOpen} unmountOnExit mountOnEnter classNames="dialog" timeout={250}>
                 <nav>
                     <ul>
-                        <li className={showingFavoriteDogs ? "favorited" : ""} onClick={handleOnClick}>
+                        <li className={showingFavoriteDogs ? "favorited" : ""}>
                             <Icon icon={IconNames.STAR}/>
-                            <div>Favorites</div>
+                            <Switch checked={showingFavoriteDogs} onChange={handleOnChange  }/>
                         </li>
                         <li>
                             <Icon icon={IconNames.MOON}/>

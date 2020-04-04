@@ -1,6 +1,6 @@
 import * as util from "./util";
 
-xdescribe("Modulo", () => {
+describe("Modulo", () => {
     it("should work for negative and positive numbers", () => {
         const {mod} = util;
 
@@ -13,14 +13,14 @@ xdescribe("Modulo", () => {
     });
 });
 
-xdescribe("Prettify Breed", () => {
+describe("Prettify Breed", () => {
     const {prettifyBreed} = util;
 
     it("should capitalize and space separate breed and sub-breed", () => {
         const breed = "alvin";
         const subBreed = "nguyen";
 
-        expect(prettifyBreed({breed,subBreed})).toBe("Alvin Nguyen");
+        expect(prettifyBreed({breed,subBreed})).toBe("Nguyen Alvin");
     });
 
     it("should be able to prettify without a subBreed", () => {
@@ -31,18 +31,18 @@ xdescribe("Prettify Breed", () => {
         const breed = "a";
         const subBreed = "j";
 
-        expect(prettifyBreed({breed,subBreed})).toBe("A J");
+        expect(prettifyBreed({breed,subBreed})).toBe("J A");
     });
 
     it("should be able to prettify uppercase letters", () => {
         const breed = "aLVIN";
         const subBreed = "ngUyeN";
 
-        expect(prettifyBreed({breed,subBreed})).toBe("Alvin Nguyen");
+        expect(prettifyBreed({breed,subBreed})).toBe("Nguyen Alvin");
     });
 });
 
-xdescribe("Promisify Image", () => {
+describe("Promisify Image", () => {
     const {promisifyImage} = util;
     const img = "https://images.dog.ceo/breeds/cattledog-australian/IMG_4386.jpg";
 
@@ -51,7 +51,7 @@ xdescribe("Promisify Image", () => {
     });
 });
 
-xdescribe("Random dogs", () => {
+describe("Random dogs", () => {
     const {randomDogs} = util;
     const prevDogs = [1,2,3,4];
     const dogs = [1,3,4,5,2,6,7,8,10,1];
@@ -83,7 +83,7 @@ xdescribe("Random dogs", () => {
     });
 });
 
-xdescribe("Breed to Key", () => {
+describe("Breed to Key", () => {
    const {breedToKey, keyToBreed} = util;
    const breed = {breed: "bread", subBreed: "pudding"};
    const key = '{"breed":"bread","subBreed":"pudding"}';
@@ -97,7 +97,7 @@ xdescribe("Breed to Key", () => {
     });
 });
 
-xdescribe("Update dogs", () => {
+describe("Update dogs", () => {
     const {updateDogs} = util;
     const prevDogs = {
         "{\"breed\":\"german\",\"subBreed\":null}": new Set([1,2,3])

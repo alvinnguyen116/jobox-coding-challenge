@@ -6,17 +6,12 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-
-  &:hover {
-    cursor: pointer;
-  }
 }
 
 .photo {
   display: flex;
   flex-direction: column;
   transition: transform .1s linear;
-
 
   &.inactive {
     background: linear-gradient(359deg, #7c7f7e , #a7a4a4 );
@@ -26,6 +21,7 @@
 
   &:hover {
     transform: scale(1.025, 1.025);
+    cursor: pointer;
   }
 }
 

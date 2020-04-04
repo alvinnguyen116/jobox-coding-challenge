@@ -76,10 +76,14 @@ export default (prevState = INITIAL_STATE, action) => {
                     currentDogs: favoriteDogs.slice(0,pageSize)
                 };
             }
+            currentDogs = [];
+            if (currentBreed && dogs[currentBreed]) {
+                currentDogs = Array.from(dogs[currentBreed]).slice(0,pageSize);
+            }
             return {
                 ...prevState,
                 showingFavoriteDogs: false,
-                currentDogs: Array.from(dogs[currentBreed] || [])
+                currentDogs
             };
         default:
             return prevState;
