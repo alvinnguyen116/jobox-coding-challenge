@@ -2,7 +2,7 @@ import {APP} from "../actions/actionTypes";
 
 const INITIAL_STATE = {
     firstSearch: true,
-    darkTheme: false,
+    darkTheme: true,
     showToast: false,
     error: null
 };

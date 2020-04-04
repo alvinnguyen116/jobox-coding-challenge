@@ -1,5 +1,7 @@
 .card-container {
   width: var(--card-length);
+  max-width: 250px;
+  max-height: 250px;
   height: var(--card-length);
   background-repeat: no-repeat;
   background-position: center center;
@@ -15,8 +17,11 @@
   flex-direction: column;
   transition: transform .1s linear;
 
+
   &.inactive {
-    background-color: var(--elevation-3);
+    background: linear-gradient(359deg, #7c7f7e , #a7a4a4 );
+    background-size: 400% 400%;
+    animation: backgroundPosition 1s ease infinite;
   }
 
   &:hover {
@@ -43,5 +48,11 @@
   }
 }
 
+// Animations ----------------------------------------------------------------------------------------------------------
 
+@keyframes backgroundPosition {
+  0%{background-position:49% 0}
+  50%{background-position:52% 100%}
+  100%{background-position:49% 0}
+}
 

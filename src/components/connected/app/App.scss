@@ -3,7 +3,7 @@
 html {
   --icon-color: gray;
   --menu-bs: 0 5px 20px 0 rgba(11,7,110,.1);
-  --card-length: 250px;
+  --card-length: 32vw;
 
  &.light {
    --background-color: white;
@@ -94,16 +94,3 @@ html {
   color: var(--font-color);
 }
 
-// Media Queries -------------------------------------------------------------------------------------------------------
-
-@media (max-width: 600px) {
-  html {
-    --card-length: 300px;
-  }
-}
-
-@media (max-width: 480px) {
-  html {
-    --card-length: calc(100vw - 4em);
-  }
-}

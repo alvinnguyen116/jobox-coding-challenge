@@ -66,7 +66,6 @@ function App({appState, dogState, breeds, dispatch}) {
      * from the search component.
      */
     const handleValueChange = async ({breed,subBreed}) => {
-        if (firstSearch) dispatch(setFirstSearch(false));
         try {
             const key = breedToKey({breed,subBreed});
             if (!(key in dogs)) {
@@ -77,6 +76,14 @@ function App({appState, dogState, breeds, dispatch}) {
         } catch (err) {
             console.log(err);
         }
+    };
+
+    /**
+     * @desc A focus handler for setting
+     * first search to false.
+     */
+    const handleOnFocus = () => {
+        dispatch(setFirstSearch(false));
     };
 
     // COMPONENTS ------------------------------------------------------------------------------------------------------
@@ -125,11 +132,18 @@ function App({appState, dogState, breeds, dispatch}) {
         return null;
     };
 
+    const searchProps = {
+        items: breeds,
+        handleValueChange,
+        handleOnFocus,
+        firstSearch
+    };
+
     return (
         <ErrorBoundary dispatch={dispatch}>
             <main>
                 <div className={`query-container ${firstSearch ? "first-search" : ""}`}>
-                    <Search items={breeds} handleValueChange={handleValueChange} firstSearch={firstSearch}/>
+                    <Search {...searchProps}/>
                 </div>
                 {(showingFavoriteDogs && !currentDogs.length) ? noFavorites : dogPhotos}
             </main>

@@ -16,7 +16,7 @@ import './search.scss';
  *  - allow dialog search on Arrow keys (up & down)
  *  - allow option selection on click and Enter key
  */
-function Search({items, handleValueChange, firstSearch}) {
+function Search({items, handleValueChange, handleOnFocus, firstSearch}) {
 
     // CONSTANTS -------------------------------------------------------------------------------------------------------
 
@@ -162,17 +162,6 @@ function Search({items, handleValueChange, firstSearch}) {
         }
     };
 
-    /**
-     * @desc A focus handler for opening
-     * the option dialog.
-     */
-    const handleOnFocus = () => {
-        setShowOptions(true);
-        if (filteredItems.length) {
-            setPlaceholder(prettifyBreed(filteredItems[0]));
-        }
-    };
-
     // COMPONENTS ------------------------------------------------------------------------------------------------------
 
     /**
@@ -186,17 +175,17 @@ function Search({items, handleValueChange, firstSearch}) {
                 const props = {
                     className: "option",
                     key: val,
-                    value: val
+                    'data-value': val
                 };
                 if (i === selectedIndex) { // special style and ref for current selected option
                     props.className += " selected";
                     props.ref = currOptionRef;
                 }
-                return (<option {...props}>{label}</option>);
+                return (<div {...props} onClick={e => optionSelect(e.target.dataset.value)}>{label}</div>);
             });
             return (
                 <div className={"options-container"}>
-                    <div className="options" onClick={e => optionSelect(e.target.value)}>
+                    <div className="options">
                         {options}
                     </div>
                 </div>
