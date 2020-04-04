@@ -82,8 +82,8 @@ function Search({items, handleValueChange, handleOnFocus, firstSearch}) {
     useEffect(() => {
         const cache = {};
         if (!(inputVal in cache)) {
-            cache[inputVal] = items.filter(breed => // prefix match
-                prettifyBreed(breed).toLowerCase().includes(inputVal)
+            cache[inputVal] = items.filter(breed => // substring match
+                prettifyBreed(breed).toLowerCase().includes(inputVal.toLowerCase())
             );
         }
         setFilteredItems(cache[inputVal]);

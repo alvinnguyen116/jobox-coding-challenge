@@ -32,6 +32,16 @@ function Photos({dogState, dispatch, singleView}) {
     // SIDE EFFECTS ----------------------------------------------------------------------------------------------------
 
     /**
+     * @desc Whenever the app state for showing favorite
+     * dogs changes and if it is true, clear the loaded photos.
+     */
+    useEffect(() => {
+        if (showingFavoriteDogs) {
+            setLoadedPhotos([]); // reset
+        }
+    }, [showingFavoriteDogs]);
+
+    /**
      * @desc Whenever current dogs changes,
      * wait for all of the not yet loaded
      * dog photos to load, then update the
@@ -51,16 +61,6 @@ function Photos({dogState, dispatch, singleView}) {
             isMounted = false;
         }
     }, [currentDogs]);
-
-    /**
-     * @desc Whenever the app state for showing favorite
-     * dogs changes and if it is true, clear the loaded photos.
-     */
-    useEffect(() => {
-        if (showingFavoriteDogs) {
-            setLoadedPhotos([]); // reset
-        }
-    }, [showingFavoriteDogs]);
 
     // HANDLERS --------------------------------------------------------------------------------------------------------
 
