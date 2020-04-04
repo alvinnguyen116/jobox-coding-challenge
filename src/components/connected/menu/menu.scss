@@ -11,15 +11,16 @@
     box-shadow: var(--menu-bs);
   }
 
+  &-icon:hover {
+    cursor: pointer;
+  }
+
   svg {
     --svg-length: 25px;
     width: var(--svg-length);
     height: var(--svg-length);
   }
 
-  &:hover {
-    cursor: pointer;
-  }
 }
 
 .dialog-background {

@@ -78,8 +78,10 @@ function Menu ({dispatch, darkTheme}) {
 
     return (
         <>
-            <div className={`menu ${scrollY > 0 ? 'active' : ""}`} onClick={() => setMenuOpen(!menuOpen)}>
-                <Icon icon={IconNames.MENU}/>
+            <div className={`menu ${scrollY > 0 ? 'active' : ""}`}>
+                <span className={"menu-icon"} onClick={() => setMenuOpen(!menuOpen)}>
+                   <Icon icon={IconNames.MENU}/>
+                </span>
             </div>
             {renderBackground()}
             <CSSTransition in={menuOpen} unmountOnExit mountOnEnter classNames="dialog" timeout={250}>
