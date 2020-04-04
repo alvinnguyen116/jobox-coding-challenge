@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/jobox-coding-challenge/precache-manifest.c9d4ea6fbae30a7fb906df2fcd768dbd.js"
+  "/jobox-coding-challenge/precache-manifest.4a0d831a2901719ece0d20b3cbeae133.js"
 );
 
 self.addEventListener('message', (event) => {

@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d56b50779b24d164ca49ad2211c50c34",
+    "revision": "77a714276b212ec8551206f8fb22a8ce",
     "url": "/jobox-coding-challenge/index.html"
   },
   {
@@ -8,15 +8,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/jobox-coding-challenge/static/css/2.274a6d8f.chunk.css"
   },
   {
-    "revision": "8a85d6f920bda4498879",
-    "url": "/jobox-coding-challenge/static/css/main.5051a5ce.chunk.css"
+    "revision": "d035ec8781ec0472a9a3",
+    "url": "/jobox-coding-challenge/static/css/main.2d212902.chunk.css"
   },
   {
     "revision": "c25bedf4c48e1be0ed73",
     "url": "/jobox-coding-challenge/static/js/2.c789c53f.chunk.js"
   },
   {
-    "revision": "8a85d6f920bda4498879",
+    "revision": "d035ec8781ec0472a9a3",
     "url": "/jobox-coding-challenge/static/js/main.9d0b68be.chunk.js"
   },
   {
