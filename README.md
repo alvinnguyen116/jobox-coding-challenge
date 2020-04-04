@@ -65,5 +65,6 @@ for unit testing and [Enzyme](https://enzymejs.github.io/enzyme/) for component 
  
  ## Contributions 
  I'm always open for suggestions and improvements.
+ 
  Feel free to create a [pull request](https://github.com/alvinnguyen116/jobox-coding-challenge/pulls) 
  or submit an [issue](https://github.com/alvinnguyen116/jobox-coding-challenge/issues).
