@@ -2,13 +2,16 @@ import React, {useState, useEffect, useRef} from 'react';
 import PropTypes from "prop-types";
 import {Icon} from "@blueprintjs/core";
 import { IconNames } from "@blueprintjs/icons";
-import {mod, prettifyBreed, breedToKey, keyToBreed} from "../../../util/util";
+import {setError} from "../../../redux/actions/app";
+import {mod, prettifyBreed, breedToKey, keyToBreed , memoizeFilterList} from "../../../util/util";
 import './search.scss';
 
 /**
  * @param items {[]} - the items to make searchable and selectable
  * @param handleValueChange {function} - a handler to call on the selected item
+ * @param handleOnFocus {function} - a handler to call on search focus
  * @param firstSearch {boolean} - whether the first search is completed
+ * @param dispatch {function}
  * @desc A search bar component for selecting a type of breed.
  *
  * Features:
@@ -16,7 +19,7 @@ import './search.scss';
  *  - allow dialog search on Arrow keys (up & down)
  *  - allow option selection on click and Enter key
  */
-function Search({items, handleValueChange, handleOnFocus, firstSearch}) {
+function Search({items, handleValueChange, handleOnFocus, firstSearch, dispatch}) {
 
     // CONSTANTS -------------------------------------------------------------------------------------------------------
 
@@ -47,8 +50,12 @@ function Search({items, handleValueChange, handleOnFocus, firstSearch}) {
      * scroll it into view if needed.
      */
     useEffect(() => {
-       const {current} = currOptionRef;
-       if (current) current.scrollIntoViewIfNeeded(false);
+        try {
+            const {current} = currOptionRef;
+            if (current) current.scrollIntoViewIfNeeded(false);
+        } catch (err) {
+            dispatch(setError(err));
+        }
     }, [selectedIndex]);
 
     /**
@@ -73,20 +80,21 @@ function Search({items, handleValueChange, handleOnFocus, firstSearch}) {
      * @desc Whenever items changes, make sure to update the
      * filtered list of items.
      */
-    useEffect(() => {setFilteredItems(items)}, [items]);
+    useEffect(() => {
+        try {
+            setFilteredItems(items)
+        } catch (err) {
+            dispatch(setError(err));
+        }
+    }, [items]);
 
     /**
      * @desc Whenever the input value changes, update the
      * filtered list of items.
      */
     useEffect(() => {
-        const cache = {};
-        if (!(inputVal in cache)) {
-            cache[inputVal] = items.filter(breed => // substring match
-                prettifyBreed(breed).toLowerCase().includes(inputVal.toLowerCase())
-            );
-        }
-        setFilteredItems(cache[inputVal]);
+        const filteredItems = memoizeFilterList(items,inputVal);
+        setFilteredItems(filteredItems);
     }, [inputVal]);
 
     /**
@@ -110,7 +118,7 @@ function Search({items, handleValueChange, handleOnFocus, firstSearch}) {
             setShowOptions(true);
             if (!e.target.value && filteredItems.length) setPlaceholder(prettifyBreed(filteredItems[0]));
         } catch (err) {
-            console.log(err);
+            dispatch(setError(err));
         }
     };
 
@@ -127,7 +135,7 @@ function Search({items, handleValueChange, handleOnFocus, firstSearch}) {
             handleValueChange(breed);
             setSelectedIndex(0); // reset
         } catch (err) {
-            console.log(err);
+            dispatch(setError(err));
         }
     };
 
@@ -158,7 +166,7 @@ function Search({items, handleValueChange, handleOnFocus, firstSearch}) {
                     break;
             }
         } catch (err) {
-            console.log(err);
+            dispatch(setError(err));
         }
     };
 
@@ -217,7 +225,8 @@ function Search({items, handleValueChange, handleOnFocus, firstSearch}) {
 Search.propTypes = {
     items: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
     handleValueChange: PropTypes.func,
-    firstSearch: PropTypes.bool
+    firstSearch: PropTypes.bool,
+    dispatch: PropTypes.func
 };
 
 export default Search;

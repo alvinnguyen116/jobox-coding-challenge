@@ -137,3 +137,65 @@ describe("Update dogs", () => {
         expect(prevDogs).toEqual(result);
     });
 });
+
+describe("Memoized filter list", () => {
+    const {memoizeFilterList} = util;
+
+    it("should provide substring matches", () => {
+       const items = [
+           {
+               breed: 'Alvin',
+               subBreed: 'Nguyen'
+           },
+           {
+               breed: 'apple',
+               subBreed: 'tree'
+           },
+           {
+               breed: 'wishful',
+               subBreed: 'treants'
+           }
+       ];
+       const target = "tre";
+       const result = [
+           {
+               breed: 'apple',
+               subBreed: 'tree'
+           },
+           {
+               breed: 'wishful',
+               subBreed: 'treants'
+           }
+       ];
+       expect(memoizeFilterList(items,target)).toEqual(result);
+    });
+
+    it("should be case-insensitive", () => {
+        const items =  [
+            {
+                breed: 'aLvin',
+                subBreed: 'Nguyen'
+            },
+            {
+                breed: 'lowes',
+                subBreed: 'mandellA'
+            },
+            {
+                breed: 'A Little trick',
+                subBreed: 'treants'
+            }
+        ];
+        const target = "a l";
+        const result = [
+            {
+                breed: 'lowes',
+                subBreed: 'mandellA'
+            },
+            {
+                breed: 'A Little trick',
+                subBreed: 'treants'
+            }
+        ];
+        expect(memoizeFilterList(items,target)).toEqual( result);
+    });
+});

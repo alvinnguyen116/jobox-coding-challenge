@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import Photo from "../../non-connected/photo/photo";
 import InfiniteScroll from "../../non-connected/infinite-scroll/infinite-scroll";
 import {getRandomDogs, appendCurrentDogs} from "../../../redux/actions/dogs";
+import {setError} from "../../../redux/actions/app";
 import {promisifyPhotos} from "../../../util/util";
 import './photos.scss';
 
@@ -50,12 +51,16 @@ function Photos({dogState, dispatch, singleView}) {
      */
     useEffect(() => {
         let isMounted = true;
-        const notLoadedPhotos = currentDogs.filter(dog => !loadedPhotos.includes(dog));
-        promisifyPhotos(notLoadedPhotos).then(() => {
-            if (isMounted) {
-                setLoadedPhotos([...loadedPhotos, ...notLoadedPhotos]);
-            }
-        });
+        try {
+            const notLoadedPhotos = currentDogs.filter(dog => !loadedPhotos.includes(dog));
+            promisifyPhotos(notLoadedPhotos).then(() => {
+                if (isMounted) {
+                    setLoadedPhotos([...loadedPhotos, ...notLoadedPhotos]);
+                }
+            });
+        } catch (err) {
+            dispatch(setError(err));
+        }
 
         return () => {
             isMounted = false;
@@ -70,13 +75,17 @@ function Photos({dogState, dispatch, singleView}) {
      * in view.
      */
     const handleLastRow = () => {
-        const {length} = currentDogs;
-        if (length < max) {
-            if (showingFavoriteDogs) {
-                dispatch(appendCurrentDogs(favoriteDogs.slice(length, length + pageSize)));
-            } else {
-                dispatch(getRandomDogs());
+        try {
+            const {length} = currentDogs;
+            if (length < max) {
+                if (showingFavoriteDogs) {
+                    dispatch(appendCurrentDogs(favoriteDogs.slice(length, length + pageSize)));
+                } else {
+                    dispatch(getRandomDogs());
+                }
             }
+        } catch (err) {
+            dispatch(setError(err));
         }
     };
 
@@ -98,11 +107,14 @@ function Photos({dogState, dispatch, singleView}) {
         return (<Photo {...props}/>);
     });
 
-    return (
-        <InfiniteScroll className={`photos ${singleView ? " single-view" : ""}`} handleLastRow={handleLastRow}>
-            {rows}
-        </InfiniteScroll>
-    );
+    const infiniteScrollProps = {
+        className: `photos ${singleView ? " single-view" : ""}`,
+        handleLastRow,
+        dispatch,
+        children: rows
+    };
+
+    return (<InfiniteScroll {...infiniteScrollProps}/>);
 }
 
 const mapStateToProps = (state) => ({

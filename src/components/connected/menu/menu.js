@@ -4,7 +4,7 @@ import { Icon, Switch } from "@blueprintjs/core";
 import { IconNames } from "@blueprintjs/icons";
 import { CSSTransition } from "react-transition-group";
 import {setShowFavoriteDogs} from "../../../redux/actions/dogs";
-import {setFirstSearch, setSingleView} from "../../../redux/actions/app";
+import {setFirstSearch, setSingleView, setError} from "../../../redux/actions/app";
 import {connect} from "react-redux";
 import {throttle} from "lodash";
 import {setDarkTheme} from "../../../redux/actions/app";
@@ -54,9 +54,13 @@ function Menu ({dispatch, darkTheme, singleView, showingFavoriteDogs}) {
      * favorite slider.
      */
     const handleOnChange = () => {
-        dispatch(setFirstSearch(false));
-        dispatch(setShowFavoriteDogs(!showingFavoriteDogs));
-        setMenuOpen(false);
+        try {
+            dispatch(setFirstSearch(false));
+            dispatch(setShowFavoriteDogs(!showingFavoriteDogs));
+            setMenuOpen(false);
+        } catch (err) {
+            dispatch(setError(err));
+        }
     };
 
     // COMPONENTS ------------------------------------------------------------------------------------------------------

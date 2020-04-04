@@ -1,4 +1,4 @@
-import {cloneDeep, random, difference} from "lodash";
+import {cloneDeep, random, difference, memoize} from "lodash";
 
 /**
  * @param num
@@ -116,3 +116,12 @@ export function updateDogs(prevDogs, {breed, subBreed, dogs}) {
     }
     return newDogs;
 }
+
+function filterList(items, inputVal) {
+    return items.filter(breed => // substring match
+        prettifyBreed(breed).toLowerCase().includes(inputVal.toLowerCase())
+    );
+}
+
+export const memoizeFilterList = memoize(filterList, (...args) => args[1]);
+

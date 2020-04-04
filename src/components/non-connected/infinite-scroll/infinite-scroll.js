@@ -6,10 +6,11 @@ import {debounce} from "lodash";
 /**
  * @param children
  * @param handleLastRow {function} - handler to call on last row
+ * @param dispatch
  * @param className {string?}
  * @desc An infinite scrolling wrapper component.
  */
-function InfiniteScroll({children, handleLastRow, className = ''}) {
+function InfiniteScroll({children, handleLastRow, dispatch, className = ''}) {
 
     // CONSTANTS -------------------------------------------------------------------------------------------------------
 
@@ -40,7 +41,8 @@ function InfiniteScroll({children, handleLastRow, className = ''}) {
 
 InfiniteScroll.propTypes = {
     handleLastRow: PropTypes.func,
-    className: PropTypes.string
+    className: PropTypes.string,
+    dispatch: PropTypes.func
 };
 
 export default InfiniteScroll;

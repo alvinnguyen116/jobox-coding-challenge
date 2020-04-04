@@ -7,7 +7,7 @@ import ErrorBoundary from "../../non-connected/error-boundary/error-boundary";
 import Search from '../../non-connected/search/search';
 import {getDogs, setCurrentBreed, getRandomDogs} from '../../../redux/actions/dogs';
 import fetchBreeds from '../../../redux/actions/breeds';
-import {setFirstSearch} from "../../../redux/actions/app";
+import {setFirstSearch, setError} from "../../../redux/actions/app";
 import {breedToKey} from "../../../util/util";
 import {Icon} from "@blueprintjs/core";
 import { IconNames } from "@blueprintjs/icons";
@@ -30,7 +30,7 @@ function App({appState, dogState, breeds, dispatch}) {
 
     // CONSTANTS -------------------------------------------------------------------------------------------------------
 
-    const {firstSearch, darkTheme, singleView} = appState;
+    const {firstSearch, darkTheme, singleView, hasError} = appState;
     const {dogs, currentBreed, showingFavoriteDogs, currentDogs} = dogState;
 
     // SIDE EFFECTS ----------------------------------------------------------------------------------------------------
@@ -40,7 +40,11 @@ function App({appState, dogState, breeds, dispatch}) {
      * and subBreeds only once.
      */
     useEffect(() => {
-        dispatch(fetchBreeds());
+        try {
+            dispatch(fetchBreeds());
+        } catch (err) {
+            dispatch(setError(err));
+        }
     }, []);
 
     /**
@@ -55,6 +59,10 @@ function App({appState, dogState, breeds, dispatch}) {
         document.querySelector("html").className = "light";
     }, [darkTheme]);
 
+    /**
+     * @desc Whenever the single view state changes,
+     * update the card length CSS variable.
+     */
     useEffect(() => {
         if (singleView) {
             document.querySelector("html").style.setProperty("--card-length", "90vw");
@@ -81,7 +89,7 @@ function App({appState, dogState, breeds, dispatch}) {
             await dispatch(setCurrentBreed(key));
             dispatch(getRandomDogs());
         } catch (err) {
-            console.log(err);
+            dispatch(setError(err));
         }
     };
 
@@ -90,7 +98,11 @@ function App({appState, dogState, breeds, dispatch}) {
      * first search to false.
      */
     const handleOnFocus = () => {
-        dispatch(setFirstSearch(false));
+        try {
+            dispatch(setFirstSearch(false));
+        } catch (err) {
+            dispatch(setError(err));
+        }
     };
 
     // COMPONENTS ------------------------------------------------------------------------------------------------------
@@ -124,11 +136,12 @@ function App({appState, dogState, breeds, dispatch}) {
         items: breeds,
         handleValueChange,
         handleOnFocus,
-        firstSearch
+        firstSearch,
+        dispatch
     };
 
     return (
-        <ErrorBoundary dispatch={dispatch}>
+        <ErrorBoundary dispatch={dispatch} hasError={hasError}>
             <main className={singleView ? "singleView" : ""}>
                 <div className={`query-container ${firstSearch ? "first-search" : ""}`}>
                     <Search {...searchProps}/>

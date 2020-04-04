@@ -4,6 +4,7 @@ const INITIAL_STATE = {
     firstSearch: true,
     darkTheme: true,
     singleView: false,
+    hasError: false,
     error: null
 };
 
@@ -27,6 +28,7 @@ export default (prevState = INITIAL_STATE, action) => {
         case APP.SET_ERROR:
             return {
                 ...prevState,
+                hasError: true,
                 error: action.error
             };
         default:

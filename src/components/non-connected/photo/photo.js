@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {addFavorite, removeFavorite} from "../../../redux/actions/dogs";
-import {setSingleView} from "../../../redux/actions/app";
+import {setSingleView, setError} from "../../../redux/actions/app";
 import {Icon} from "@blueprintjs/core";
 import {IconNames} from "@blueprintjs/icons";
 import './photo.scss';
@@ -26,17 +26,22 @@ function Photo({url, isLoaded, isFavorite, singleView, dispatch}) {
      * it sets single view to true.
      */
     const handleOnClick = async e => {
-        if (singleView) {
-            if (isFavorite) {
-                dispatch(removeFavorite(url));
+        try {
+            if (singleView) {
+                if (isFavorite) {
+                    dispatch(removeFavorite(url));
+                } else {
+                    dispatch(addFavorite(url));
+                }
             } else {
-                dispatch(addFavorite(url));
+                e.persist();
+                await dispatch(setSingleView(true));
+                e.target.scrollIntoViewIfNeeded();
             }
-        } else {
-            e.persist();
-            await dispatch(setSingleView(true));
-            e.target.scrollIntoViewIfNeeded();
+        } catch (err) {
+            dispatch(setError(err));
         }
+
     };
 
     // COMPONENTS ------------------------------------------------------------------------------------------------------
