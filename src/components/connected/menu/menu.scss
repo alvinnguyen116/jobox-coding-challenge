@@ -13,10 +13,8 @@
     box-shadow: var(--menu-bs);
   }
 
-  &-icon {
-    &:hover {
+  .bp3-icon:hover {
       cursor: pointer;
-    }
   }
 
   svg {

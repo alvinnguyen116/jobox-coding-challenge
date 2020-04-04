@@ -56,6 +56,7 @@ function Menu ({dispatch, darkTheme, singleView, showingFavoriteDogs}) {
     const handleOnChange = () => {
         try {
             dispatch(setFirstSearch(false));
+            dispatch(setSingleView(false));
             dispatch(setShowFavoriteDogs(!showingFavoriteDogs));
             setMenuOpen(false);
         } catch (err) {
@@ -106,7 +107,7 @@ function Menu ({dispatch, darkTheme, singleView, showingFavoriteDogs}) {
                     <ul>
                         <li className={showingFavoriteDogs ? "favorited" : ""}>
                             <Icon icon={IconNames.STAR}/>
-                            <Switch checked={showingFavoriteDogs} onChange={handleOnChange  }/>
+                            <Switch checked={showingFavoriteDogs} onChange={handleOnChange}/>
                         </li>
                         <li>
                             <Icon icon={IconNames.MOON}/>
