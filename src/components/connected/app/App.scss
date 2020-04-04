@@ -1,0 +1,109 @@
+// Check here for input on color choices: https://material.io/design/color/
+
+html {
+  --icon-color: gray;
+  --menu-bs: 0 5px 20px 0 rgba(11,7,110,.1);
+  --card-length: 250px;
+
+ &.light {
+   --background-color: white;
+   --foreground-color: #fafafa;
+   --font-color: rgba(0, 0, 0, 0.87);
+   --search-border: #dfe1e5;
+   --search-bg: white;
+   --box-shadow: 0 4px 6px 0 rgba(32,33,36,0.28);
+   --action-hover: rgba(0, 0, 0, 0.04);
+   --action-selected: rgba(0, 0, 0, 0.08);
+   --menu-bg: white;
+
+   --elevation-1: rgba(0, 0, 0, .05);
+   --elevation-2: rgba(0, 0, 0, .07);
+   --elevation-3: rgba(0, 0, 0, .08);
+ }
+
+  &.dark {
+    --background-color: black;
+    --foreground-color: #121212;
+    --font-color: white;
+    --search-border: black;
+    --search-bg: var(--foreground-color);
+    --box-shadow: none;
+    --action-hover: rgba(255, 255, 255, 0.08);
+    --action-selected: rgba(255, 255, 255, 0.16);
+    --menu-bg: #212121;
+
+    --elevation-1: rgba(255, 255, 255, .05);
+    --elevation-2: rgba(255, 255, 255, .07);
+    --elevation-3: rgba(255, 255, 255, .08);
+  }
+}
+
+html {
+  background-color: var(--background-color);
+  color: var(--font-color);
+}
+
+.query-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+  position: absolute;
+  transition: top 0.5s ease-in-out 0s;
+  top: 50px;
+
+  &.first-search {
+    transform: translate(0, -50%);
+    top: 50%;
+  }
+}
+
+// Class states for react transition group: https://reactcommunity.org/react-transition-group/css-transition
+
+.photos {
+  &-enter {
+    opacity: 0;
+  }
+
+  &-enter-done {
+    opacity: 1;
+    transition: opacity .5s ease-in-out .5s;
+  }
+
+  &-exit {
+    opacity: 1;
+  }
+
+  &-exit-active {
+    opacity: 0;
+  }
+}
+
+.no-favorites {
+  display: flex;
+  color: var(--font-color);
+  padding-top: 80px;
+  height: 100vh;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+}
+
+.bp3-toast {
+  background-color: var(--menu-bg);
+  color: var(--font-color);
+}
+
+// Media Queries -------------------------------------------------------------------------------------------------------
+
+@media (max-width: 600px) {
+  html {
+    --card-length: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    --card-length: calc(100vw - 4em);
+  }
+}

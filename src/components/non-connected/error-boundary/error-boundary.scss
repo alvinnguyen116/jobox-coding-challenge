@@ -1,0 +1,42 @@
+.error-boundary {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(232deg, #383f3e80, #e1f5f380);
+  background-size: 400% 400%;
+  animation: backgroundPosition 5s ease infinite;
+
+  .message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+      font-size: 32px;
+    }
+
+    h2 {
+      font-size: 24px;
+    }
+
+    .bp3-icon {
+      margin-bottom: 20px;
+
+      svg {
+        --icon-len: 35px;
+        height: var(--icon-len);
+        width: var(--icon-len);
+      }
+    }
+  }
+}
+
+// Animations ----------------------------------------------------------------------------------------------------------
+
+@keyframes backgroundPosition {
+  0%{background-position:51% 0}
+  50%{background-position:50% 100%}
+  100%{background-position:51% 0}
+}

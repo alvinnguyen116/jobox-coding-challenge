@@ -1,0 +1,39 @@
+.photos {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  width: fit-content;
+  margin: 120px auto;
+  animation: opacity 1s ease-in;
+}
+
+// Animations ----------------------------------------------------------------------------------------------------------
+
+@keyframes opacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// Media Queries -------------------------------------------------------------------------------------------------------
+
+@media (max-width: 850px) {
+    .photos {
+      grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+  .photos {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .photos {
+    grid-gap: 1em;
+  }
+}

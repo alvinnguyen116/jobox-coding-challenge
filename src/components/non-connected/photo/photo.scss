@@ -1,0 +1,47 @@
+.card-container {
+  width: var(--card-length);
+  height: var(--card-length);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.photo {
+  display: flex;
+  flex-direction: column;
+  transition: transform .1s linear;
+
+  &.inactive {
+    background-color: var(--elevation-3);
+  }
+
+  &:hover {
+    transform: scale(1.025, 1.025);
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  color: var(--icon-color);
+  background-color: var(--elevation-3);
+
+  .bp3-icon {
+    padding: 8px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .favorite {
+    color: yellow;
+  }
+}
+
+
+
