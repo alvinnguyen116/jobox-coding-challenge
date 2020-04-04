@@ -7,9 +7,9 @@ import ErrorBoundary from "../../non-connected/error-boundary/error-boundary";
 import Search from '../../non-connected/search/search';
 import {getDogs, setCurrentBreed, getRandomDogs} from '../../../redux/actions/dogs';
 import fetchBreeds from '../../../redux/actions/breeds';
-import {setFirstSearch, setShowToast} from "../../../redux/actions/app";
+import {setFirstSearch} from "../../../redux/actions/app";
 import {breedToKey} from "../../../util/util";
-import {Icon, Toast, Toaster, Position} from "@blueprintjs/core";
+import {Icon} from "@blueprintjs/core";
 import { IconNames } from "@blueprintjs/icons";
 import "@blueprintjs/core/lib/css/blueprint.css";
 import './App.scss';
@@ -25,13 +25,12 @@ import './App.scss';
  *  - fetching breeds data from Dogs API
  *  - updating theme
  *  - displaying a memoized photos component
- *  - displaying toasts
  */
 function App({appState, dogState, breeds, dispatch}) {
 
     // CONSTANTS -------------------------------------------------------------------------------------------------------
 
-    const {firstSearch, showToast, darkTheme} = appState;
+    const {firstSearch, darkTheme, singleView} = appState;
     const {dogs, currentBreed, showingFavoriteDogs, currentDogs} = dogState;
 
     // SIDE EFFECTS ----------------------------------------------------------------------------------------------------
@@ -55,6 +54,14 @@ function App({appState, dogState, breeds, dispatch}) {
         }
         document.querySelector("html").className = "light";
     }, [darkTheme]);
+
+    useEffect(() => {
+        if (singleView) {
+            document.querySelector("html").style.setProperty("--card-length", "90vw");
+            return;
+        }
+        document.querySelector("html").style.setProperty("--card-length", "32vw");
+    }, [singleView]);
 
     // HANDLERS --------------------------------------------------------------------------------------------------------
 
@@ -113,25 +120,6 @@ function App({appState, dogState, breeds, dispatch}) {
       </div>
     );
 
-    /**
-     * @desc A toast is rendered every time the
-     * user clicks on a photo to indicate that
-     * the photo's URL has been copied to the
-     * clipboard.
-     */
-    const renderToast = () => {
-        if (showToast) {
-            return (
-                <Toast
-                    icon={IconNames.CLIPBOARD}
-                    message={"Copied to clipboard"}
-                    onDismiss={() => dispatch(setShowToast(false))}
-                    timeout={2000}/>
-            );
-        }
-        return null;
-    };
-
     const searchProps = {
         items: breeds,
         handleValueChange,
@@ -141,16 +129,13 @@ function App({appState, dogState, breeds, dispatch}) {
 
     return (
         <ErrorBoundary dispatch={dispatch}>
-            <main>
+            <main className={singleView ? "singleView" : ""}>
                 <div className={`query-container ${firstSearch ? "first-search" : ""}`}>
                     <Search {...searchProps}/>
                 </div>
                 {(showingFavoriteDogs && !currentDogs.length) ? noFavorites : dogPhotos}
             </main>
             <Menu/>
-            <Toaster position={Position.TOP}>
-                {renderToast()}
-            </Toaster>
         </ErrorBoundary>
     );
 }

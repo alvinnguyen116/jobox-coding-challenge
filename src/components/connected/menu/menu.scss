@@ -5,14 +5,18 @@
   width: 100%;
   padding: 1em;
   color: var(--icon-color);
+  display: flex;
+  justify-content: flex-end;
 
   &.active {
     backdrop-filter: blur(10px);
     box-shadow: var(--menu-bs);
   }
 
-  &-icon:hover {
-    cursor: pointer;
+  &-icon {
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   svg {
@@ -21,6 +25,9 @@
     height: var(--svg-length);
   }
 
+  &.single-view {
+    justify-content: space-between;
+  }
 }
 
 .dialog-background {
@@ -40,6 +47,7 @@ nav {
   width: 150px;
   position: fixed;
   top: 0;
+  right: 0;
   transition: transform .25s;
   font-size: 1em;
 
@@ -69,13 +77,17 @@ nav {
       &:hover {
         cursor: pointer;
       }
+
+      &.favorited {
+        color: yellow;
+      }
     }
   }
 }
 
 .dialog {
   &-enter {
-    transform: translateX(-100%);
+    transform: translateX(100%);
   }
 
   &-enter-done{
@@ -87,7 +99,7 @@ nav {
   }
 
   &-exit-active {
-    transform: translateX(-100%);
+    transform: translateX(100%);
   }
 }
 

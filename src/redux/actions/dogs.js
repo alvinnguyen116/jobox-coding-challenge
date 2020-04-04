@@ -50,9 +50,10 @@ export function addFavorite(dog) {
     };
 }
 
-export function showFavoriteDogs() {
+export function setShowFavoriteDogs(showFavoriteDogs) {
     return {
-        type: DOGS.SHOW_FAVORITES
+        type: DOGS.SET_SHOW_FAVORITES,
+        showFavoriteDogs
     };
 }
 

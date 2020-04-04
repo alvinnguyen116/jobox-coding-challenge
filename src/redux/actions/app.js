@@ -21,9 +21,9 @@ export function setError(error) {
     }
 }
 
-export function setShowToast(showToast) {
+export function setSingleView(singleView) {
     return {
-        type: APP.SHOW_TOAST,
-        showToast
+        type: APP.SET_SINGLE_VIEW,
+        singleView
     };
 }

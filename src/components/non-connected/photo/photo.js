@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {setShowToast} from "../../../redux/actions/app";
 import {addFavorite, removeFavorite} from "../../../redux/actions/dogs";
+import {setSingleView} from "../../../redux/actions/app";
 import {Icon} from "@blueprintjs/core";
 import {IconNames} from "@blueprintjs/icons";
 import './photo.scss';
@@ -10,62 +10,56 @@ import './photo.scss';
  * @param url - the image to display
  * @param isLoaded - whether the image has finished loading
  * @param isFavorite - whether the image is currently a favorite image
+ * @param singleView - whether the app state is in single view
  * @param dispatch
  * @desc A photo component
  */
-function Photo({url, isLoaded, isFavorite, dispatch}) {
-
-    // CONSTANTS -------------------------------------------------------------------------------------------------------
-
-    const BUTTON_OPTION = Object.freeze({
-        FAVORITE: "FAVORITE",
-        COPY: "COPY"
-    });
+function Photo({url, isLoaded, isFavorite, singleView, dispatch}) {
 
     // HANDLERS --------------------------------------------------------------------------------------------------------
+
     /**
      * @param e
-     * @desc A click handler for triggering
-     * link copying and favoriting or unfavoriting
-     * a photo.
+     * @desc A click handler for a photo.
+     * If the app is in single view, clicking
+     * on a photo initiates favoriting, else
+     * it sets single view to true.
      */
-    const handleOnClick = e => {
-        const {buttonOption} = e.currentTarget.dataset;
-        switch (buttonOption) {
-            case BUTTON_OPTION.COPY:
-                navigator.clipboard.writeText(url);
-                dispatch(setShowToast(true));
-                break;
-            case BUTTON_OPTION.FAVORITE:
-                if (isFavorite) {
-                    dispatch(removeFavorite(url));
-                } else {
-                    dispatch(addFavorite(url));
-                }
-                break;
-            default:
-                break;
+    const handleOnClick = async e => {
+        if (singleView) {
+            if (isFavorite) {
+                dispatch(removeFavorite(url));
+            } else {
+                dispatch(addFavorite(url));
+            }
+        } else {
+            e.persist();
+            await dispatch(setSingleView(true));
+            e.target.scrollIntoViewIfNeeded();
         }
     };
 
     // COMPONENTS ------------------------------------------------------------------------------------------------------
+
+    const renderFavoriteButton = () => {
+        if (singleView) {
+            return (
+                <div className={"buttons"}>
+                    <Icon className={isFavorite ? "favorite" : ""} icon={IconNames.STAR}/>
+                </div>
+            );
+        }
+        return null;
+    };
 
     /**
      * @desc Until the photo finished loading, render a default background.
      */
     if (isLoaded) {
         return  (
-            <div className={"photo"} key={url}>
-                <div
-                    className={"card-container"}
-                    style={{backgroundImage: `url(${url})`}}
-                    onClick={handleOnClick}
-                    data-button-option={BUTTON_OPTION.COPY}/>
-                <div className={"buttons"}>
-                    <span data-button-option={BUTTON_OPTION.FAVORITE} onClick={handleOnClick}>
-                       <Icon className={isFavorite ? "favorite" : ""} icon={IconNames.STAR}/>
-                    </span>
-                </div>
+            <div className={`photo`} key={url}>
+                <div className={`card-container`} style={{backgroundImage: `url(${url})`}} onClick={handleOnClick}/>
+                {renderFavoriteButton()}
             </div>
         );
     }

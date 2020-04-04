@@ -10,6 +10,7 @@ import './photos.scss';
 /**
  * @param dogState
  * @param dispatch
+ * @param singleView - whether the current app state is in single view
  * @desc Photos is a connected component for displaying
  * the current dogs from the dog state as photos.
  *
@@ -17,7 +18,7 @@ import './photos.scss';
  *  - maintains a loaded photos state so that each page is loaded simultaneously
  *  - renders dog photos with infinite scrolling
  */
-function Photos({dogState, dispatch}) {
+function Photos({dogState, dispatch, singleView}) {
 
     // CONSTANTS -------------------------------------------------------------------------------------------------------
 
@@ -51,6 +52,16 @@ function Photos({dogState, dispatch}) {
         }
     }, [currentDogs]);
 
+    /**
+     * @desc Whenever the app state for showing favorite
+     * dogs changes and if it is true, clear the loaded photos.
+     */
+    useEffect(() => {
+        if (showingFavoriteDogs) {
+            setLoadedPhotos([]); // reset
+        }
+    }, [showingFavoriteDogs]);
+
     // HANDLERS --------------------------------------------------------------------------------------------------------
 
     /**
@@ -81,25 +92,28 @@ function Photos({dogState, dispatch}) {
             key: url,
             isFavorite: favoriteDogs.includes(url),
             isLoaded: loadedPhotos.includes(url),
+            singleView,
             dispatch
         };
         return (<Photo {...props}/>);
     });
 
     return (
-        <InfiniteScroll className={"photos"} handleLastRow={handleLastRow}>
+        <InfiniteScroll className={`photos ${singleView ? " single-view" : ""}`} handleLastRow={handleLastRow}>
             {rows}
         </InfiniteScroll>
     );
 }
 
 const mapStateToProps = (state) => ({
-    dogState: state.dogs
+    dogState: state.dogs,
+    singleView: state.app.singleView
 });
 
 Photos.propTypes = {
     dogState: PropTypes.object,
-    dispatch: PropTypes.func
+    dispatch: PropTypes.func,
+    singleView: PropTypes.bool
 };
 
 export default connect(mapStateToProps)(Photos);

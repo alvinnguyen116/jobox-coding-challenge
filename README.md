@@ -56,8 +56,8 @@ to a search bar I made for a [personal project](https://alvinnguyen116.github.io
 
 - For the 'extra features', I implemented:
    1) The ability to favorite a dog and see a list of your favorite dogs 
-   2) The ability to copy a link of a dog photo to your clipboard 
-   3) The ability to toggle dark theme
+   2) The ability to toggle dark theme
+   3) The ability to toggle between grid and single view
    
 - The structure and quality of the code is my interpretation of a production environment.
 Components are all documented and organized for readability. I used [Jest](https://jestjs.io/)

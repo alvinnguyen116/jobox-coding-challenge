@@ -1,7 +1,7 @@
 .card-container {
   width: var(--card-length);
-  max-width: 250px;
-  max-height: 250px;
+  max-width: 300px;
+  max-height: 300px;
   height: var(--card-length);
   background-repeat: no-repeat;
   background-position: center center;
@@ -45,6 +45,13 @@
 
   .favorite {
     color: yellow;
+  }
+}
+
+@media (max-width: 600px) {
+  .card-container {
+    max-width: unset;
+    max-height: unset;
   }
 }
 

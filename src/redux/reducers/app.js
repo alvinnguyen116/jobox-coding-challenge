@@ -3,7 +3,7 @@ import {APP} from "../actions/actionTypes";
 const INITIAL_STATE = {
     firstSearch: true,
     darkTheme: true,
-    showToast: false,
+    singleView: false,
     error: null
 };
 
@@ -19,10 +19,10 @@ export default (prevState = INITIAL_STATE, action) => {
                 ...prevState,
                 darkTheme: action.darkTheme
             };
-        case APP.SHOW_TOAST:
+        case APP.SET_SINGLE_VIEW:
             return {
                 ...prevState,
-                showToast: action.showToast
+                singleView: action.singleView
             };
         case APP.SET_ERROR:
             return {

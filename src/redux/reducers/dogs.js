@@ -68,11 +68,18 @@ export default (prevState = INITIAL_STATE, action) => {
                 ...prevState,
                 favoriteDogs: newFavoriteDogs
             };
-        case DOGS.SHOW_FAVORITES:
+        case DOGS.SET_SHOW_FAVORITES:
+            if (action.showFavoriteDogs) {
+                return {
+                    ...prevState,
+                    showingFavoriteDogs: true,
+                    currentDogs: favoriteDogs.slice(0,pageSize)
+                };
+            }
             return {
                 ...prevState,
-                showingFavoriteDogs: true,
-                currentDogs: favoriteDogs.slice(0,pageSize)
+                showingFavoriteDogs: false,
+                currentDogs: Array.from(dogs[currentBreed] || [])
             };
         default:
             return prevState;

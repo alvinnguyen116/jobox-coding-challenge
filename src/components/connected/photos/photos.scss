@@ -7,6 +7,11 @@
   animation: opacity 1s ease-in;
 }
 
+.photos.single-view {
+  grid-template-columns: 1fr;
+  grid-gap: 5vw;
+}
+
 // Animations ----------------------------------------------------------------------------------------------------------
 
 @keyframes opacity {
