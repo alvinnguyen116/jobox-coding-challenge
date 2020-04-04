@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/jobox-coding-challenge/static/css/main.688f0708.chunk.css",
-    "main.js": "/jobox-coding-challenge/static/js/main.29c764c6.chunk.js",
-    "main.js.map": "/jobox-coding-challenge/static/js/main.29c764c6.chunk.js.map",
+    "main.css": "/jobox-coding-challenge/static/css/main.ce31f978.chunk.css",
+    "main.js": "/jobox-coding-challenge/static/js/main.939d4fce.chunk.js",
+    "main.js.map": "/jobox-coding-challenge/static/js/main.939d4fce.chunk.js.map",
     "runtime-main.js": "/jobox-coding-challenge/static/js/runtime-main.7afc2dcd.js",
     "runtime-main.js.map": "/jobox-coding-challenge/static/js/runtime-main.7afc2dcd.js.map",
     "static/css/2.274a6d8f.chunk.css": "/jobox-coding-challenge/static/css/2.274a6d8f.chunk.css",
-    "static/js/2.c789c53f.chunk.js": "/jobox-coding-challenge/static/js/2.c789c53f.chunk.js",
-    "static/js/2.c789c53f.chunk.js.map": "/jobox-coding-challenge/static/js/2.c789c53f.chunk.js.map",
+    "static/js/2.cde938de.chunk.js": "/jobox-coding-challenge/static/js/2.cde938de.chunk.js",
+    "static/js/2.cde938de.chunk.js.map": "/jobox-coding-challenge/static/js/2.cde938de.chunk.js.map",
     "index.html": "/jobox-coding-challenge/index.html",
-    "precache-manifest.cdf973b10fe3f4ee7571ef28e7c9fa8c.js": "/jobox-coding-challenge/precache-manifest.cdf973b10fe3f4ee7571ef28e7c9fa8c.js",
+    "precache-manifest.9da33316a9b20feefb51eca1ee522a00.js": "/jobox-coding-challenge/precache-manifest.9da33316a9b20feefb51eca1ee522a00.js",
     "service-worker.js": "/jobox-coding-challenge/service-worker.js",
     "static/css/2.274a6d8f.chunk.css.map": "/jobox-coding-challenge/static/css/2.274a6d8f.chunk.css.map",
-    "static/css/main.688f0708.chunk.css.map": "/jobox-coding-challenge/static/css/main.688f0708.chunk.css.map"
+    "static/css/main.ce31f978.chunk.css.map": "/jobox-coding-challenge/static/css/main.ce31f978.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.7afc2dcd.js",
     "static/css/2.274a6d8f.chunk.css",
-    "static/js/2.c789c53f.chunk.js",
-    "static/css/main.688f0708.chunk.css",
-    "static/js/main.29c764c6.chunk.js"
+    "static/js/2.cde938de.chunk.js",
+    "static/css/main.ce31f978.chunk.css",
+    "static/js/main.939d4fce.chunk.js"
   ]
 }
