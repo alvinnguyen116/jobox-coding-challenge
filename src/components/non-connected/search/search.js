@@ -202,12 +202,28 @@ function Search({items, handleValueChange, handleOnFocus, firstSearch, dispatch}
         return null;
     };
 
+    /**
+     * @desc Renders a button to clear
+     * the search container.
+     */
+    const renderCloseButton = () => {
+        if (inputVal) {
+            return (
+                <span onClick={() => setInputVal('')}>
+                      <Icon className={"close-btn"} icon={IconNames.SMALL_CROSS}/>
+                </span>
+            );
+        }
+        return null;
+    };
+
     return (
         <div
             className={"search-container"}
             style={{'width': (firstSearch ? '50%' : "80%")}}
             ref={searchContainerRef}>
-            <Icon icon={IconNames.SEARCH}/>
+            <Icon className="search-btn" icon={IconNames.SEARCH}/>
+            {renderCloseButton()}
             <input
                 type="text"
                 className={(showOptions ? "focus" : "") + (showOptions && filteredItems.length ? " dropdown" : "")}

@@ -8,13 +8,24 @@
     position: absolute;
     top: 50%;
     transform: translate(0, -50%);
-    left: 15px;
     color: gray;
 
     svg {
       --icon-length: 20px;
       height: var(--icon-length);
       width: var(--icon-length);
+    }
+  }
+
+  .search-btn {
+    left: 15px;
+  }
+
+  .close-btn {
+    right: 15px;
+
+    &:hover {
+      cursor: pointer;
     }
   }
 
@@ -25,7 +36,7 @@
     border: 1px solid var(--search-border);
     font-size: 16px;
     line-height: 34px;
-    padding: 5px 45px;
+    padding: 5px 50px;
     box-sizing: border-box;
     background-color: var(--search-bg);
     color: var(--font-color);
