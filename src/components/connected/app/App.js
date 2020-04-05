@@ -59,18 +59,6 @@ function App({appState, dogState, breeds, dispatch}) {
         document.querySelector("html").className = "light";
     }, [darkTheme]);
 
-    /**
-     * @desc Whenever the single view state changes,
-     * update the card length CSS variable.
-     */
-    useEffect(() => {
-        if (singleView) {
-            document.querySelector("html").style.setProperty("--card-length", "90vw");
-            return;
-        }
-        document.querySelector("html").style.setProperty("--card-length", "32vw");
-    }, [singleView]);
-
     // HANDLERS --------------------------------------------------------------------------------------------------------
 
     /**
@@ -142,7 +130,7 @@ function App({appState, dogState, breeds, dispatch}) {
 
     return (
         <ErrorBoundary dispatch={dispatch} hasError={hasError}>
-            <main className={singleView ? "singleView" : ""}>
+            <main className={singleView ? "single-view" : ""}>
                 <div className={`query-container ${firstSearch ? "first-search" : ""}`}>
                     <Search {...searchProps}/>
                 </div>

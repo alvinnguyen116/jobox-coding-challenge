@@ -2,7 +2,6 @@
 
 html {
   --menu-bs: 0 5px 20px 0 rgba(11,7,110,.1);
-  --card-length: 32vw;
 
  &.light {
    --background-color: white;
@@ -42,6 +41,14 @@ html {
 html {
   background-color: var(--background-color);
   color: var(--font-color);
+}
+
+main {
+  --card-length: 32vw;
+
+  &.single-view {
+    --card-length: 90vw;
+  }
 }
 
 .query-container {
