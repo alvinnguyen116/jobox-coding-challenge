@@ -29,6 +29,7 @@ function Search({items, handleValueChange, handleOnFocus, firstSearch, dispatch}
         DOWN: 40,
         ENTER: 13
     });
+    const inputRef = useRef(null);
 
     // COMPONENT STATE -------------------------------------------------------------------------------------------------
 
@@ -116,7 +117,20 @@ function Search({items, handleValueChange, handleOnFocus, firstSearch, dispatch}
         try {
             setInputVal(e.target.value);
             setShowOptions(true);
-            if (!e.target.value && filteredItems.length) setPlaceholder(prettifyBreed(filteredItems[0]));
+            if (!e.target.value) setPlaceholder(INITIAL_PLACEHOLDER);
+        } catch (err) {
+            dispatch(setError(err));
+        }
+    };
+
+    /**
+     * @desc A click handler for clearing
+     * the search bar.
+     */
+    const handleOnClick = () => {
+        try {
+            setInputVal('');
+            inputRef.current.focus();
         } catch (err) {
             dispatch(setError(err));
         }
@@ -209,7 +223,7 @@ function Search({items, handleValueChange, handleOnFocus, firstSearch, dispatch}
     const renderCloseButton = () => {
         if (inputVal) {
             return (
-                <span onClick={() => setInputVal('')}>
+                <span onClick={handleOnClick}>
                       <Icon className={"close-btn"} icon={IconNames.SMALL_CROSS}/>
                 </span>
             );
@@ -232,7 +246,8 @@ function Search({items, handleValueChange, handleOnFocus, firstSearch, dispatch}
                 onKeyUp={handleOnKeyUp}
                 onChange={handleOnChange}
                 placeholder={placeholder}
-                onFocus={handleOnFocus}/>
+                onFocus={handleOnFocus}
+                ref={inputRef}/>
             {renderOptions()}
         </div>
     );
