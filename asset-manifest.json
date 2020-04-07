@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/jobox-coding-challenge/static/css/main.9826974b.chunk.css",
+    "main.css": "/jobox-coding-challenge/static/css/main.fa967c8b.chunk.css",
     "main.js": "/jobox-coding-challenge/static/js/main.095fa48b.chunk.js",
     "main.js.map": "/jobox-coding-challenge/static/js/main.095fa48b.chunk.js.map",
     "runtime-main.js": "/jobox-coding-challenge/static/js/runtime-main.7afc2dcd.js",
@@ -9,16 +9,16 @@
     "static/js/2.e8e62bd0.chunk.js": "/jobox-coding-challenge/static/js/2.e8e62bd0.chunk.js",
     "static/js/2.e8e62bd0.chunk.js.map": "/jobox-coding-challenge/static/js/2.e8e62bd0.chunk.js.map",
     "index.html": "/jobox-coding-challenge/index.html",
-    "precache-manifest.ca3d5f2629a9c49142766b65a904e1d6.js": "/jobox-coding-challenge/precache-manifest.ca3d5f2629a9c49142766b65a904e1d6.js",
+    "precache-manifest.a08dd65f95e49540fe79d13909c787dc.js": "/jobox-coding-challenge/precache-manifest.a08dd65f95e49540fe79d13909c787dc.js",
     "service-worker.js": "/jobox-coding-challenge/service-worker.js",
     "static/css/2.274a6d8f.chunk.css.map": "/jobox-coding-challenge/static/css/2.274a6d8f.chunk.css.map",
-    "static/css/main.9826974b.chunk.css.map": "/jobox-coding-challenge/static/css/main.9826974b.chunk.css.map"
+    "static/css/main.fa967c8b.chunk.css.map": "/jobox-coding-challenge/static/css/main.fa967c8b.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.7afc2dcd.js",
     "static/css/2.274a6d8f.chunk.css",
     "static/js/2.e8e62bd0.chunk.js",
-    "static/css/main.9826974b.chunk.css",
+    "static/css/main.fa967c8b.chunk.css",
     "static/js/main.095fa48b.chunk.js"
   ]
 }
