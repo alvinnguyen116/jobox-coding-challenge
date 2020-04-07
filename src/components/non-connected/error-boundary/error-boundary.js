@@ -8,6 +8,12 @@ import './error-boundary.scss';
 class ErrorBoundary extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {hasError: false};
+    }
+
+    static getDerivedStateFromError(error) {
+        // Update state so the next render will show the fallback UI.
+        return { hasError: true };
     }
 
     componentDidCatch(error, errorInfo) {
@@ -15,7 +21,7 @@ class ErrorBoundary extends React.Component {
     }
 
     render() {
-        if (this.props.hasError) {
+        if (this.state.hasError || this.props.hasError) {
             return (
                 <main className={"error-boundary"}>
                     <div className={"message"}>

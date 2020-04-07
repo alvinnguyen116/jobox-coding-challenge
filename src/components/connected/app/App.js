@@ -5,7 +5,7 @@ import Photos from "../photos/photos";
 import Menu from "../menu/menu";
 import ErrorBoundary from "../../non-connected/error-boundary/error-boundary";
 import Search from '../../non-connected/search/search';
-import {getDogs, setCurrentBreed, getRandomDogs} from '../../../redux/actions/dogs';
+import {getRandomDogs, setCurrentBreed, refreshCurrentDogs} from '../../../redux/actions/dogs';
 import fetchBreeds from '../../../redux/actions/breeds';
 import {setFirstSearch, setError} from "../../../redux/actions/app";
 import {breedToKey} from "../../../util/util";
@@ -72,10 +72,10 @@ function App({appState, dogState, breeds, dispatch}) {
         try {
             const key = breedToKey({breed,subBreed});
             if (!(key in dogs)) {
-                await dispatch(getDogs(breed, subBreed));
+                await dispatch(getRandomDogs(breed, subBreed));
             }
             await dispatch(setCurrentBreed(key));
-            dispatch(getRandomDogs());
+            dispatch(refreshCurrentDogs());
         } catch (err) {
             dispatch(setError(err));
         }

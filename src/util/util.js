@@ -63,7 +63,7 @@ export function promisifyPhotos(photos) {
  * @desc Generate n more unique random dogs that do not
  * exists in the previous array of dogs.
  */
-export function randomDogs(n, dogs, prev=[]) {
+export function randomDogs(n, dogs, prev=[]) { // not using anymore
     const diff = difference(dogs, prev);
     const result = [...prev];
     while(n > 0) {

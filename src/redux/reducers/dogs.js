@@ -1,5 +1,5 @@
 import {FETCH_DOGS, DOGS} from "../actions/actionTypes";
-import {updateDogs, randomDogs} from "../../util/util";
+import {updateDogs} from "../../util/util";
 
 const INITIAL_STATE = {
     inProgress: false,
@@ -40,13 +40,11 @@ export default (prevState = INITIAL_STATE, action) => {
                 ...prevState,
                 currentBreed: action.currentBreed,
                 showingFavoriteDogs: false, // reset
-                currentDogs: [] // reset
             };
-        case DOGS.GET_RANDOM_DOGS:
-            currentDogs = randomDogs(pageSize, Array.from(dogs[currentBreed]), currentDogs);
+        case DOGS.REFRESH_CURRENT_DOGS:
             return {
                 ...prevState,
-                currentDogs
+                currentDogs: Array.from(dogs[currentBreed]) || []
             };
         case DOGS.APPEND_CURRENT_DOGS:
             return {

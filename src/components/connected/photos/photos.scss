@@ -6,6 +6,7 @@
   margin: 120px auto;
   animation: opacity 1s ease-in;
 }
+// todo: @supports grid
 
 .photos.single-view {
   grid-template-columns: 1fr;

@@ -16,14 +16,15 @@ async function getJSON(url) {
 /**
  * @param breed
  * @param subBreed
+ * @param pageSize
  * @returns {Promise<any>}
  * @desc Makes a request to the Dogs API by breed and sub-breed.
  * Dogs API: https://dog.ceo/dog-api/documentation/
  */
-export function fetchDogs(breed, subBreed = null) {
+export function fetchRandomDogs(breed, subBreed = null, pageSize = 9) {
     let url = `https://dog.ceo/api/breed/${breed}/`;
     if (subBreed) url += `${subBreed}/`;
-    url += "images";
+    url += `images/random/${pageSize}`;
     return getJSON(url);
 }
 

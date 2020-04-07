@@ -1,4 +1,4 @@
-import {fetchDogs} from "../../api";
+import {fetchRandomDogs} from "../../api";
 import {DOGS, FETCH_DOGS} from "./actionTypes";
 
 function initialAction() {
@@ -30,12 +30,6 @@ export function setCurrentBreed(currentBreed) {
     };
 }
 
-export function getRandomDogs() {
-    return {
-        type: DOGS.GET_RANDOM_DOGS
-    };
-}
-
 export function removeFavorite(dog) {
     return {
         type: DOGS.REMOVE_FAVORITE,
@@ -64,11 +58,17 @@ export function appendCurrentDogs(currentDogs) {
     }
 }
 
-export function getDogs(breed, subBreed=null) {
+export function refreshCurrentDogs() {
+    return {
+        type: DOGS.REFRESH_CURRENT_DOGS
+    }
+}
+
+export function getRandomDogs(breed, subBreed=null) {
     return async (dispatch) => {
         dispatch(initialAction());
         try {
-            const res = await fetchDogs(breed,subBreed);
+            const res = await fetchRandomDogs(breed,subBreed);
             if (res.status === "success") {
                 dispatch(successAction({breed,subBreed,res}));
             } else {

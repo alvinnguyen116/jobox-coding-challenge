@@ -34,12 +34,14 @@ npm run start
  performance, as well as the level of UI/UX decisions."
  
 ## My Approach 
-- It seemed possibly network intensive to try to obtain [random image from a breed](https://dog.ceo/dog-api/documentation/breed)
-AND ensure uniqueness. Using the random endpoint, there was 
-no guarantee I would get back non-duplicates. Instead, 
-I fetched all of the [Dogs by breed](https://dog.ceo/dog-api/documentation/breed) and implemented
-my own logic for randomness while maintaining uniqueness. The main trade-off is initial load and memory. 
+- I decided to NOT make repeated calls to the random endpoint if my response 
+contained duplicates. Making repeated calls until you have a certain amount of 
+unique photos or until a certain threshold may run into performance issues 
+on low-end devices.
 
+- I define 'duplicates' by using the URL as the photo identifier. However,
+some photos are submitted multiple times under different URL's, making it difficult 
+to identify which photos are indeed unique. 
 
 - For infinite scrolling, I actually already created an [Unsplash Demo](https://alvinnguyen116.github.io/project-unsplash-demo/)
  for an article I posted on [Medium](https://medium.com/@alvinnguyen116/virtual-and-infinite-scrolling-in-react-d56a05976cd2)

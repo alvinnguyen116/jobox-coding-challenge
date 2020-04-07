@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Photo from "../../non-connected/photo/photo";
 import InfiniteScroll from "../../non-connected/infinite-scroll/infinite-scroll";
-import {getRandomDogs, appendCurrentDogs} from "../../../redux/actions/dogs";
+import {getRandomDogs, appendCurrentDogs, refreshCurrentDogs} from "../../../redux/actions/dogs";
 import {setError} from "../../../redux/actions/app";
 import {promisifyPhotos} from "../../../util/util";
 import './photos.scss';
@@ -23,8 +23,7 @@ function Photos({dogState, dispatch, singleView}) {
 
     // CONSTANTS -------------------------------------------------------------------------------------------------------
 
-    const {currentBreed, dogs, currentDogs, favoriteDogs, showingFavoriteDogs, pageSize} = dogState;
-    const max = (showingFavoriteDogs ? favoriteDogs.length : dogs[currentBreed].size);
+    const {currentBreed, currentDogs, favoriteDogs, showingFavoriteDogs, pageSize} = dogState;
 
     // COMPONENT STATE -------------------------------------------------------------------------------------------------
 
@@ -74,15 +73,15 @@ function Photos({dogState, dispatch, singleView}) {
      * row inside of an infinite scroll is
      * in view.
      */
-    const handleLastRow = () => {
+    const handleLastRow = async () => {
         try {
             const {length} = currentDogs;
-            if (length < max) {
-                if (showingFavoriteDogs) {
-                    dispatch(appendCurrentDogs(favoriteDogs.slice(length, length + pageSize)));
-                } else {
-                    dispatch(getRandomDogs());
-                }
+            if (showingFavoriteDogs) {
+                dispatch(appendCurrentDogs(favoriteDogs.slice(length, length + pageSize)));
+            } else {
+                const {breed, subBreed} = JSON.parse(currentBreed);
+                await dispatch(getRandomDogs(breed, subBreed));
+                dispatch(refreshCurrentDogs());
             }
         } catch (err) {
             dispatch(setError(err));
