@@ -7,7 +7,7 @@ import ErrorBoundary from "../../non-connected/error-boundary/error-boundary";
 import Search from '../../non-connected/search/search';
 import {getRandomDogs, setCurrentBreed, refreshCurrentDogs} from '../../../redux/actions/dogs';
 import fetchBreeds from '../../../redux/actions/breeds';
-import {setFirstSearch, setError} from "../../../redux/actions/app";
+import {setFirstSearch, setError, setSingleView} from "../../../redux/actions/app";
 import {breedToKey} from "../../../util/util";
 import {Icon} from "@blueprintjs/core";
 import { IconNames } from "@blueprintjs/icons";
@@ -76,6 +76,7 @@ function App({appState, dogState, breeds, dispatch}) {
             }
             await dispatch(setCurrentBreed(key));
             dispatch(refreshCurrentDogs());
+            dispatch(setSingleView(false));
         } catch (err) {
             dispatch(setError(err));
         }

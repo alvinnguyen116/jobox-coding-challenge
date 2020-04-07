@@ -2,9 +2,6 @@
   width: fit-content;
   margin: 120px auto;
   animation: opacity 1s ease-in;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
 
   &.single-view {
     flex-direction: column;
