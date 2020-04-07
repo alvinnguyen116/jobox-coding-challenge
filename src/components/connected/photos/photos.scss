@@ -1,16 +1,37 @@
 .photos {
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 2vw;
-  width: fit-content;
+  width: 100%;
   margin: 120px auto;
   animation: opacity 1s ease-in;
-}
-// todo: @supports grid
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 
-.photos.single-view {
-  grid-template-columns: 1fr;
-  grid-gap: 5vw;
+  &.single-view {
+    flex-direction: column;
+  }
+
+  .photo {
+    margin-bottom: 1em;
+  }
+}
+
+// Supports ------------------------------------------------------------------------------------------------------------
+
+@supports (display: grid) {
+  .photos {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2vw;
+
+    &.single-view {
+      grid-template-columns: 1fr;
+      grid-gap: 5vw;
+    }
+
+    .photo {
+      margin-bottom: unset;
+    }
+  }
 }
 
 // Animations ----------------------------------------------------------------------------------------------------------
