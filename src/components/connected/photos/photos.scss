@@ -1,17 +1,17 @@
 .photos {
-  width: 100%;
+  width: fit-content;
   margin: 120px auto;
   animation: opacity 1s ease-in;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
 
   &.single-view {
     flex-direction: column;
   }
 
   .photo {
-    margin-bottom: 1em;
+    margin: 1em;
   }
 }
 
@@ -29,7 +29,7 @@
     }
 
     .photo {
-      margin-bottom: unset;
+      margin: unset;
     }
   }
 }

@@ -174,7 +174,8 @@ function Search({items, handleValueChange, handleOnFocus, firstSearch, dispatch}
                     setPlaceholder(prettifyBreed(filteredItems[newIndex]));
                     break;
                 case KEY_CODE.ENTER:
-                    optionSelect(breedToKey(filteredItems[selectedIndex]));
+                    const item = filteredItems[selectedIndex];
+                    item && optionSelect(breedToKey(item));
                     break;
                 default:
                     break;
